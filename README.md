@@ -1,4 +1,6 @@
-# binance_endpoint
+# binance_endpoint PoC
+A proof of concept to test the creation of a service that acts as a "rely" of Binance API.
+
 The service gets the spot price from Binance API:
 https://api.binance.com/api/v3/ticker/price
 
