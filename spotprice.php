@@ -2,10 +2,13 @@
 
 header('Content-Type: application/json; charset=utf-8');
 
-$symbol = $_GET['symbol'];
+$symbol="";
+if(isset($_GET['symbol']))
+    $symbol = $_GET['symbol'];
 $cachetime=0;
 if(isset($_GET['cachetime']))
     $cachetime = (int)$_GET['cachetime'];
+
 
 $response_json=false;
 if (file_exists ( './'.$symbol.".json" ) && ($cachetime>0)){
@@ -34,7 +37,8 @@ if ($response_json){
     $result = curl_exec($ch);
     curl_close($ch);
 
-    //TODO: controlar posibles errores desde Binance
+    //TODO: controlar posibles errores desde Binance para manejar baneos
+    // Los errores "blandos" (p.ej. símbolo no válido) los pasaríamos directamente en la respuesta
 
     $binance_response=json_decode($result,true);
 
